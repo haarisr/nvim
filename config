@@ -1,0 +1,12 @@
+# Account 1
+Host katomed
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519
+
+# Account 2
+Host personal
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_personal
+
