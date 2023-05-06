@@ -27,6 +27,7 @@ return
             null_ls.builtins.completion.spell,
             null_ls.builtins.formatting.isort,
             --        null_ls.builtins.formatting.stylua,
+            null_ls.builtins.formatting.cpplint,
         }
 
         null_ls.setup({
