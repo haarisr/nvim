@@ -21,6 +21,9 @@ return
                     }
                 }
             end
+            if server_name == "clangd" then
+                capabilities.offsetEncoding = { "utf-16" }
+            end
             lspconfig[server_name].setup({
                 capabilities = capabilities,
                 settings = settings,
