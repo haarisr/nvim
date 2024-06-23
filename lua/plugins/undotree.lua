@@ -2,7 +2,6 @@ return
 {
     "mbbill/undotree",
     name = "undotree",
-    opts = {},
     config = function()
     end,
     keys = {

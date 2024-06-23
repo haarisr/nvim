@@ -2,7 +2,11 @@ return
 -- the colorscheme should be available when starting Neovim
 {
     {
+        'folke/tokyonight.nvim',
+        'sainnhe/sonokai',
+        'oxfist/night-owl.nvim',
         'tiagovla/tokyodark.nvim',
+        'tanvirtin/monokai.nvim',
     },
     { "catppuccin/nvim", name = "catppuccin" },
     {

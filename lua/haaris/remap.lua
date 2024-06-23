@@ -1,6 +1,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+vim.keymap.set("n", "<Left>", "<nop>")
+vim.keymap.set("n", "<Up>", "<nop>")
+vim.keymap.set("n", "<Right>", "<nop>")
+vim.keymap.set("n", "<Down>", "<nop>")
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -55,9 +60,9 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_prev)
 -- Tab movement
 -- vim.keymap.set('n', '<c-Left>', '<cmd>tabpre<cr>', silent)
 -- vim.keymap.set('n', '<c-Right>', '<cmd>tabnext<cr>', silent)

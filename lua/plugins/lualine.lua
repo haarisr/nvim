@@ -2,8 +2,10 @@ local opts = {
     options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
+        -- component_separators = { left = '', right = '' },
+        -- section_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
         disabled_filetypes = {
             statusline = {},
             winbar = {},
@@ -21,7 +23,7 @@ local opts = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = { 'filename' },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_x = { 'copilot', 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
     },
@@ -41,12 +43,13 @@ local opts = {
     extensions = {}
 }
 
-
 return
 {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    dependencies = { 'kyazdani42/nvim-web-devicons', opts = {} },
-    name = 'lualine',
-    opts = opts
+    dependencies = {
+        { 'kyazdani42/nvim-web-devicons', opts = {} },
+        { "ofseed/copilot-status.nvim" }
+    },
+    opts = opts,
 }

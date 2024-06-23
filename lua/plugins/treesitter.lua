@@ -8,10 +8,11 @@ return
     {
         'nvim-treesitter/playground',
         'nvim-treesitter/nvim-treesitter-textobjects',
+        'nvim-treesitter/nvim-treesitter-context',
     },
     opts =
     {
-        ensure_installed = { "c", "lua", "vim", "python", "help" },
+        ensure_installed = { "c", "lua", "vim", "python", "vimdoc" },
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -21,8 +22,8 @@ return
         incremental_selection = {
             enable = true,
             keymaps = {
-                init_selection = "<C-s>",
-                node_incremental = "<C-s>",
+                init_selection = "<C-space>",
+                node_incremental = "<C-space>",
                 scope_incremental = "<nop>",
                 node_decremental = "<bs>",
             },
@@ -37,6 +38,23 @@ return
                     ['ac'] = '@class.outer',
                     ['ic'] = '@class.inner',
                 }
+            },
+            -- swap = {
+            --     enable = true,
+            --     swap_next = {
+            --         ['<leader>a'] = '@parameter.inner',
+            --     },
+            --     swap_previous = {
+            --         ['<leader>A'] = '@parameter.inner',
+            --     },
+            -- },
+            lsp_interop = {
+                enable = true,
+                border = 'none',
+                peek_definition_code = {
+                    ['<leader>df'] = '@function.outer',
+                    ['<leader>dF'] = '@class.outer',
+                },
             },
         },
     },

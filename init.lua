@@ -1,4 +1,14 @@
 vim.loader.enable()
+vim.filetype.add {
+	extension = {
+		zsh = "sh",
+		sh = "sh", -- force sh-files with zsh-shebang to still get sh as filetype
+	},
+	filename = {
+		[".zshrc"] = "sh",
+		[".zshenv"] = "sh",
+	},
+}
 require("haaris")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

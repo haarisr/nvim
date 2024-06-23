@@ -37,16 +37,6 @@ vim.opt.colorcolumn = "88"
 
 vim.opt.laststatus = 3
 
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.opt.foldlevel = 2
--- vim.opt.foldtext =
---     [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) ]]
--- vim.opt.fillchars = "fold: "
--- vim.opt.foldnestmax = 3
--- vim.opt.foldminlines = 1
-
-
 vim.opt.formatoptions = vim.opt.formatoptions
     - "a" -- Auto formatting is BAD.
     - "t" -- Don't auto format my code. I got linters for that.
@@ -58,6 +48,6 @@ vim.opt.formatoptions = vim.opt.formatoptions
     + "j" -- Auto-remove comments if possible.
     - "2" -- I'm not in gradeschool anymore
 
-vim.opt.foldmethod = "marker"
-vim.opt.foldlevel = 0
-vim.opt.modelines = 1
+-- vim.opt.foldmethod = "marker"
+-- vim.opt.foldlevel = 0
+-- vim.opt.modelines = 5
