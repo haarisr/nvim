@@ -25,15 +25,14 @@ return
                     }
                 }
             end
-            if server_name == "pyright" then
+            if server_name == "pyright" or server_name == "basedpyright" then
                 settings = {
                     pyright = {
-                        -- disableLanguageServices = false,
                         disableOrganizeImports = true,
                     },
                     python = {
                         analysis = {
-                            typeCheckingMode = "strict",
+                            typeCheckingMode = "standard",
                             useLibraryCodeForTypes = true,
                         },
                     },
@@ -43,28 +42,10 @@ return
                 capabilities.offsetEncoding = { "utf-16" }
             end
 
-            if server_name == "ruff" then
-                settings = {
-                    lint = {
-                        preview = true,
-                    },
-                    format = {
-                        preview = true,
-                    },
-                    configurationPreference = "editorFirst",
-                }
-                lspconfig[server_name].setup({
-                    capabilities = capabilities,
-                    init_options = {
-                        settings = settings,
-                    },
-                })
-            else
-                lspconfig[server_name].setup({
-                    capabilities = capabilities,
-                    settings = settings,
-                })
-            end
+            lspconfig[server_name].setup({
+                capabilities = capabilities,
+                settings = settings,
+            })
         end
 
         local severity_levels = {
