@@ -26,17 +26,17 @@ return
                 }
             end
             if server_name == "pyright" or server_name == "basedpyright" then
-                settings = {
-                    pyright = {
-                        disableOrganizeImports = true,
-                    },
-                    python = {
-                        analysis = {
-                            typeCheckingMode = "standard",
-                            useLibraryCodeForTypes = true,
-                        },
-                    },
-                }
+                -- settings = {
+                --     pyright = {
+                --         disableOrganizeImports = true,
+                --     },
+                --     python = {
+                --         analysis = {
+                --             typeCheckingMode = "standard",
+                --             useLibraryCodeForTypes = true,
+                --         },
+                --     },
+                -- }
             end
             if server_name == "clangd" then
                 capabilities.offsetEncoding = { "utf-16" }
@@ -47,6 +47,23 @@ return
                 settings = settings,
             })
         end
+
+        -- vim.api.nvim_create_autocmd('FileType', {
+        --     -- This handler will fire when the buffer's 'filetype' is "python"
+        --     pattern = 'python',
+        --     callback = function(args)
+        --         vim.lsp.start({
+        --             name = 'red_knot',
+        --             cmd = { '/home/haaris/ruff/target/debug/red_knot', '--current-directory', '.', '--watch', '-vv', 'server' },
+        --             -- Set the "root directory" to the parent directory of the file in the
+        --             -- current buffer (`args.buf`) that contains either a "setup.py" or a
+        --             -- "pyproject.toml" file. Files that share a root directory will reuse
+        --             -- the connection to the same LSP server.
+        --             root_dir = vim.fs.root(args.buf, { 'setup.py', 'pyproject.toml' }),
+        --         })
+        --     end,
+        -- })
+
 
         local severity_levels = {
             vim.diagnostic.severity.ERROR,

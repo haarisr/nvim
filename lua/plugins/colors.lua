@@ -7,6 +7,9 @@ return
         'oxfist/night-owl.nvim',
         'tiagovla/tokyodark.nvim',
         'tanvirtin/monokai.nvim',
+        'projekt0n/github-nvim-theme',
+        'navarasu/onedark.nvim',
+        'rose-pine/neovim'
     },
     { "catppuccin/nvim", name = "catppuccin" },
     {
@@ -16,7 +19,7 @@ return
         priority = 1000, -- make sure to load this before all the other start plugins
         config = function()
             -- load the colorscheme here
-            vim.cmd([[colorscheme kanagawa]])
+            vim.cmd("colorscheme tokyonight-night")
         end,
     },
 }

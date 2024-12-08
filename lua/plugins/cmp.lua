@@ -18,17 +18,19 @@ return
             config = true,
         },
         {
-            "L3MON4D3/LuaSnip",            -- Required
-            "rafamadriz/friendly-snippets" -- Optional
+            "L3MON4D3/LuaSnip",                           -- Required
+            dependencies = "rafamadriz/friendly-snippets" -- Optional
         },
         {
             "windwp/nvim-autopairs",
+            enabled = false,
             config = true,
         },
     },
     config = function()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
+        require("luasnip.loaders.from_vscode").lazy_load()
         local has_words_before = function()
             unpack = unpack or table.unpack
             local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -133,8 +135,8 @@ return
                 },
             },
         }
-        -- If you want insert `(` after select function or method item
-        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-        cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+        -- -- If you want insert `(` after select function or method item
+        -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+        -- cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
 }

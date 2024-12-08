@@ -18,11 +18,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local buffer = ev.buf
-        local builtin = require('telescope.builtin')
+        -- local builtin = require('telescope.builtin')
 
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { buffer = buffer, desc = 'Go to Declaration' })
-        -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = buffer, desc = 'Go to Definition' })
-        vim.keymap.set('n', 'gd', builtin.lsp_definitions, { buffer = buffer, desc = 'Go to Definition' })
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = buffer, desc = 'Go to Definition' })
+        -- vim.keymap.set('n', 'gd', builtin.lsp_definitions, { buffer = buffer, desc = 'Go to Definition' })
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = buffer, desc = 'Hover' })
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { buffer = buffer, desc = 'Go to Implementation' })
         -- vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, { buffer = buffer, desc = 'Signature Help' })
@@ -33,12 +33,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<space>wl', function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end, { buffer = buffer, desc = 'List Workspace Folder' })
-        vim.keymap.set("n", "<leader>ws", builtin.lsp_document_symbols, { buffer = buffer, desc = 'Workspace Symbol' })
+        -- vim.keymap.set("n", "<leader>ws", builtin.lsp_document_symbols, { buffer = buffer, desc = 'Workspace Symbol' })
         vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, { buffer = buffer, desc = 'Go to Type Definition' })
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = buffer, desc = 'Rename Symbol' })
         vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = buffer, desc = 'Code Action' })
-        -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = buffer, desc = 'Go to References' })
-        vim.keymap.set('n', 'gr', builtin.lsp_references, { buffer = buffer, desc = 'Go to References' })
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = buffer, desc = 'Go to References' })
+        -- vim.keymap.set('n', 'gr', builtin.lsp_references, { buffer = buffer, desc = 'Go to References' })
         vim.keymap.set('n', '<leader>f', function()
             vim.lsp.buf.format({ async = true })
         end, { buffer = buffer, desc = 'Format' })
@@ -56,6 +56,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 group = group,
                 callback = vim.lsp.buf.clear_references,
             })
+        end
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true)
         end
     end,
 })
