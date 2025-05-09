@@ -4,14 +4,28 @@ return
     event = { "BufReadPre", "BufNewFile" },
     dependencies =
     {
-        { "williamboman/mason.nvim",           cmd = "Mason", opts = {} },
-        { "williamboman/mason-lspconfig.nvim", opts = {} }
+        { "williamboman/mason.nvim", cmd = "Mason", opts = {} },
+        {
+            "williamboman/mason-lspconfig.nvim",
+            opts = {
+                ensure_installed = {
+                    "lua_ls",
+                    "pyright",
+                    "clangd",
+                    "cmake",
+                    "ruff",
+                    "bashls",
+                    "dockerls",
+                    "rust_analyzer",
+                },
+                automatic_enable = false,
+            },
+        },
+        { 'saghen/blink.cmp' }
     },
     config = function()
         local lspconfig = require('lspconfig')
-        -- local capabilities = vim.tbl_deep_extend( "force", vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
-        -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+        local capabilities = require('blink.cmp').get_lsp_capabilities()
         -- capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
         local servers = require('mason-lspconfig').get_installed_servers()
         for _, server_name in ipairs(servers) do
@@ -48,21 +62,24 @@ return
             })
         end
 
-        -- vim.api.nvim_create_autocmd('FileType', {
-        --     -- This handler will fire when the buffer's 'filetype' is "python"
-        --     pattern = 'python',
-        --     callback = function(args)
-        --         vim.lsp.start({
-        --             name = 'red_knot',
-        --             cmd = { '/home/haaris/ruff/target/debug/red_knot', '--current-directory', '.', '--watch', '-vv', 'server' },
-        --             -- Set the "root directory" to the parent directory of the file in the
-        --             -- current buffer (`args.buf`) that contains either a "setup.py" or a
-        --             -- "pyproject.toml" file. Files that share a root directory will reuse
-        --             -- the connection to the same LSP server.
-        --             root_dir = vim.fs.root(args.buf, { 'setup.py', 'pyproject.toml' }),
-        --         })
-        --     end,
-        -- })
+        vim.api.nvim_create_autocmd('FileType', {
+            -- This handler will fire when the buffer's 'filetype' is "python"
+            pattern = 'python',
+            callback = function(args)
+                vim.lsp.start({
+                    name = 'ty',
+                    -- cmd = { '/home/haaris/ruff/target/debug/ty', '--current-directory', '.', '--watch', '-vv', 'server' },
+                    cmd = { '/home/haarisr/ruff/target/debug/ty', 'server' },
+                    -- Set the "root directory" to the parent directory of the file in the
+                    -- current buffer (`args.buf`) that contains either a "setup.py" or a
+                    -- "pyproject.toml" file. Files that share a root directory will reuse
+                    -- the connection to the same LSP server.
+                    root_dir = vim.fs.root(args.buf, { 'setup.py', 'pyproject.toml' }),
+                })
+            end,
+        })
+
+        vim.lsp.inlay_hint.enable()
 
 
         local severity_levels = {
